@@ -31,7 +31,7 @@ class App extends React.Component {
     console.log('toggleCompleted: ', taskId);
 
     this.setState({
-      todoItems: this.state.data.map(task => {
+      todoItems: this.state.todoItems.map(task => {
         if (task.id === taskId) {
           return {
             ...task, 
@@ -42,6 +42,17 @@ class App extends React.Component {
       })
     });
   }
+
+  clearCompleted = () => {
+    console.log('completed items cleared');
+    this.setState({
+      todoItems: this.state.todoItems.filter(item => {
+        return !item.purchased;
+      })
+    });
+  };
+
+  
  
   render() {
     return (
