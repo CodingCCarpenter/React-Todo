@@ -26,10 +26,10 @@ class App extends React.Component {
     this.toggleCompleted = this.toggleCompleted.bind(this);
   }
 
-  //class method that will be passed down to TodoList
+  //class method to mark tasks as completed (will be passed down to TodoList)
   toggleCompleted(taskId) {
     console.log('toggleCompleted: ', taskId);
-
+    //update state
     this.setState({
       todoItems: this.state.todoItems.map(task => {
         if (task.id === taskId) {
@@ -43,8 +43,10 @@ class App extends React.Component {
     });
   }
 
+  //class method to clear tasks marks as completed (will be passed down to TodoList)
   clearCompleted = () => {
     console.log('completed items cleared');
+    //update state
     this.setState({
       todoItems: this.state.todoItems.filter(item => {
         return !item.purchased;
@@ -52,12 +54,35 @@ class App extends React.Component {
     });
   };
 
-  
+  //class method to add task (will be passed down to TodoList)
+  addTask = taskName => {
+    console.log('add task: ', taskName);
+    //update state
+    this.setState({
+      todoItems: [
+        ...this.state.todoItems,
+        {
+          task: taskName,
+          id: Date.now(), 
+          completed: false
+      }
+      ]
+    });
+  };
  
   render() {
+    console.log('rendering...');
     return (
-      <div>
-        <h2>Welcome to your Todo App!</h2>
+      <div className ='App'>
+        <div className ='header'>
+          <h1>To Do List</h1>
+          <TodoForm addTask={this.addTask} />
+        </div>
+        <TodoList
+          todoItems={this.state.todoItems}
+          toggleCompleted={this.toggleCompleted}
+          clearCompleted={this.clearCompleted}
+        />
       </div>
     );
   }
