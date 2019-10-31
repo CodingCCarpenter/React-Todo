@@ -1,7 +1,8 @@
 import React from 'react';
+import ReactDOM from "react-dom";
 
-import TodoList from './components/TodoList.js';
-import TodoForm from './components/TodoForm.js';
+import TodoList from './components/TodoList';
+import TodoForm from './components/TodoForm';
 import './styles.css';
 
 const  data = [
