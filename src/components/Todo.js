@@ -1,13 +1,28 @@
-import React from 'react';
-import './Todo.css';
+import React from "react";
+import styled from "styled-components";
 
-
-const Todo = props => {
+const Todo = (props) => {
   return (
-    <div className={`todo${props.todo.completed ? ' complete' : ''}`} id={props.todo.id} onClick={props.onClick}>
-      {props.todo.task}
+    <div>
+      <P
+        onClick={props.handleCompleted}
+        id={props.id}
+        completed={props.completed}
+      >
+        {props.task}
+      </P>
+      <br />
     </div>
-  )
-}
+  );
+};
+
+const P = styled.p`
+  display: inline-block;
+  text-decoration: ${(props) => (props.completed ? "line-through" : "none")};
+  font-family: Futura;
+  font-size: 16px;
+  margin-top: 0;
+  margin-bottom: 2.3rem;
+`;
 
 export default Todo;

@@ -1,100 +1,75 @@
-import React from 'react';
-import TodoForm from './components/Todo.js';
-import TodoList from './components/TodoList.js';
+import React from "react";
+import TodoList from "./components/TodoList.js";
 
 class App extends React.Component {
-  // you will need a place to store your state in this component.
-  // design `App` to be the parent component of your application.
-  // this component is going to take care of state, and any change handlers you need to work with your state
+  //set state
   constructor() {
     super();
     this.state = {
-      todos: [
-        {
-          task: 'Clean Kitchen',
-          id: 1528817077286,
-          completed: false
-        },
-        {
-          task: 'Make brownies',
-          id: 1528817084358,
-          completed: false
-        }
-      ],
-      todo: '',
-      search: '',
-      filteredTodos: [
-        {
-          task: 'Clean Kitchen',
-          id: 1528817077286,
-          completed: false
-        },
-        {
-          task: 'Make brownies',
-          id: 1528817084358,
-          completed: false
-        }
-      ],
+      task: "",
+      id: 0,
+      data: []
     };
   }
 
-  handleFormChange = event => {
+  //handlers
+  
+  handleChange = (event) => {
+    this.setState({ task: event.target.value });
+  };
+
+  handleSubmit = (event) => {
+    event.preventDefault();
     this.setState({
-      todo: {
-        task: event.target.value,
-        id: Date.now(),
-        completed: false}
-    })
-  }
-
-  handleTodoSubmit = event => {
-    event.preventDefault();
-    if (!this.state.todo) {
-      return;
-    }
-    this.setState({filteredTodos: [...this.state.filteredTodos, this.state.todo], todo: ''})
-  }
-
-  clearCompleted = event => {
-    event.preventDefault();
-    const filtered = this.state.filteredTodos.filter(todo => todo.completed === false);
-    this.setState({filteredTodos: filtered})
-  }
-
-  toggleComplete = event => {
-    const updated = this.state.filteredTodos.map(todo =>
-      todo.id === Number(event.target.id)
-        ? { ...todo, completed: !todo.completed ? true : false }
-        : todo
+      data: [
+        ...this.state.data,
+        {
+          task: this.state.task,
+          id: Date.now(),
+          completed: false
+        }
+      ]
+    });
+    console.log(this.state);
+    event.target.reset();
+  };
+  
+  componendDidUpdate = () => {
+    this.state.data.map((item) => {
+      console.log(item.id);
+      if (item.id === this.state.id) {
+        item.completed = !item.completed;
+        this.forceUpdate();
+      }
+    });
+    console.log(this.state.id);
+  };
+ 
+  handleCompleted = (event) => {
+    this.setState(
+      { id: parseInt(event.target.id, 10) },
+      this.componendDidUpdate
     );
-    this.setState({filteredTodos: updated})
-    // console.log('Clicked item id: ' + event.target.id)
-    // console.log(this.state.todos);
-  }
+  };
 
-  handleSearchChange = event => {
-    const filtered = this.state.todos.filter(todo => todo.task.toLowerCase().includes(this.state.search.toLowerCase()));
-    this.setState({
-      search: event.target.value,
-      filteredTodos: filtered ? filtered : this.state.filteredTodos
-    })
-    console.log(this.state.search);
-    console.log(filtered);
-  }
+  //clear completed items
+  handleClear = (event) => {
+    event.preventDefault();
+    this.setState({ data: this.state.data.filter((item) => !item.completed) });
+  };
 
+  //render
   render() {
     return (
       <div>
-        <h2>Welcome to your Todo App!</h2>
-        <TodoForm
-        todo={this.state.todo}
-        search={this.state.search}
-        clearCompleted={this.clearCompleted}
-        handleChange={this.handleFormChange}
-        handleSubmit={this.handleTodoSubmit}
-        searchChange={this.handleSearchChange}
+        <h1>Welcome to your Todo App!</h1>
+        <TodoList
+          state={this.state}
+          handleSubmit={this.handleSubmit}
+          handleChange={this.handleChange}
+          handleCompleted={this.handleCompleted}
+          handleClear={this.handleClear}
         />
-        <TodoList todos={this.state.filteredTodos} toggleComplete={this.toggleComplete} />
       </div>
     );
   }
