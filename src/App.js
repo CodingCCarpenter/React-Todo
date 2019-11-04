@@ -1,5 +1,7 @@
 import React from "react";
 import TodoList from "./components/TodoList.js";
+import styled from 'styled-components';
+
 
 class App extends React.Component {
   //set state
@@ -62,7 +64,7 @@ class App extends React.Component {
   render() {
     return (
       <div>
-        <h1>Welcome to your Todo App!</h1>
+        <h1>To Do:</h1>
         <TodoList
           state={this.state}
           handleSubmit={this.handleSubmit}
