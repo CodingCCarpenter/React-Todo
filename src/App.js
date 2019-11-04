@@ -2,6 +2,17 @@ import React from "react";
 import TodoList from "./components/TodoList.js";
 import styled from 'styled-components';
 
+ //styled components
+ const H1 = styled.h1`
+  margin: 3.4% auto;
+  font-size: 4.2rem;
+  margin: 2.3rem;
+  padding-left: 2%;
+  color: #60B2E5;
+  text-decoration: underline;
+  `;
+
+
 
 class App extends React.Component {
   //set state
@@ -15,7 +26,6 @@ class App extends React.Component {
   }
 
   //handlers
-  
   handleChange = (event) => {
     this.setState({ task: event.target.value });
   };
@@ -63,8 +73,8 @@ class App extends React.Component {
   //render
   render() {
     return (
-      <div>
-        <h1>To Do:</h1>
+      <div className='app'>
+        <Div/>
         <TodoList
           state={this.state}
           handleSubmit={this.handleSubmit}

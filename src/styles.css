@@ -1,5 +1,8 @@
-.input, .button {
-    margin: 2.3 rem;
-    line-height: 1.6;
-
+.app{
+    background: #7C8483;
+    padding: 5% 0 25% 0;
+    width: 98%;
+}
+body{
+    background: black;
 }
