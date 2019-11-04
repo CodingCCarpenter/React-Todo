@@ -1,6 +1,6 @@
 import React from 'react';
-import TodoForm from './components/TodoComponents/TodoForm.js';
-import TodoList from './components/TodoComponents/TodoList.js';
+import TodoForm from './components/Todo.js';
+import TodoList from './components/TodoList.js';
 
 class App extends React.Component {
   // you will need a place to store your state in this component.
@@ -11,12 +11,12 @@ class App extends React.Component {
     this.state = {
       todos: [
         {
-          task: 'Organize Garage',
+          task: 'Clean Kitchen',
           id: 1528817077286,
           completed: false
         },
         {
-          task: 'Bake Cookies',
+          task: 'Make brownies',
           id: 1528817084358,
           completed: false
         }
@@ -25,12 +25,12 @@ class App extends React.Component {
       search: '',
       filteredTodos: [
         {
-          task: 'Organize Garage',
+          task: 'Clean Kitchen',
           id: 1528817077286,
           completed: false
         },
         {
-          task: 'Bake Cookies',
+          task: 'Make brownies',
           id: 1528817084358,
           completed: false
         }
