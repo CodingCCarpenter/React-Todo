@@ -1,6 +1,7 @@
 import React from "react";
 import TodoList from "./components/TodoList.js";
 import styled from 'styled-components';
+import logo from './logo.png';
 
  //styled components
  const H1 = styled.h1`
@@ -12,6 +13,10 @@ import styled from 'styled-components';
   text-decoration: underline;
   `;
 
+  const Img = styled.img`
+   width: 40%;
+   padding-left: 25%;
+  `
 
 
 class App extends React.Component {
@@ -74,7 +79,7 @@ class App extends React.Component {
   render() {
     return (
       <div className='app'>
-        <Div/>
+        <Img className='App-logo'src={logo} alt='todo app logo' />
         <TodoList
           state={this.state}
           handleSubmit={this.handleSubmit}

@@ -31,23 +31,6 @@ box-shadow:
   10px 10px 15px rgba(0,0,0,0.5),
   -1px -1px 30px rgba(0,0,0,0.2);
 padding: 0 3% 0 3%;
-background: #53F4FF;
-color: black;
-font-weight: 700;
-`;
-
-const Button2 = styled.button`
-display: inline-block;
-font-size: 16px;
-margin: 2.3rem;
-line-height: 2.3;
-border: 1.5px solid black;
-border-radius: 24px;
-box-shadow: 
-  2px 2px 5px rgba(0,0,0,0.5),
-  10px 10px 15px rgba(0,0,0,0.5),
-  -1px -1px 30px rgba(0,0,0,0.2);
-padding: 0 3% 0 3%;
 background: #982649;
 color: white;
 font-weight: 700;
@@ -62,7 +45,7 @@ const TodoForm = (props) => {
         onChange={props.handleChange}
       />
       <Button className='button'>Add To-Do</Button>
-      <Button2 className='button' onClick={props.handleClear}>Clear Completed</Button2>
+      <Button className='button' onClick={props.handleClear}>Clear Completed</Button>
     </form>
   );
 };
